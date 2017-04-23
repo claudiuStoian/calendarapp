@@ -1,0 +1,11 @@
+<a routerLinkActive="active" [routerLink]="[eventId]" class="list-group-item clearfix">
+  <div class="pull-right">
+    <h4 class="list-group-item-heading">{{event.name}}</h4>
+    <p class="list-group-item-text">{{event.location}}</p>
+    <p class="list-group-item-text">{{event.date | dateFormat}}</p>
+  </div>
+  <span class="pull-left">
+      <img class="img-responsive img-thumbnail" src="{{event.imagePath}}" style="max-height: 50px;"/>
+  </span>
+</a>
+<br>

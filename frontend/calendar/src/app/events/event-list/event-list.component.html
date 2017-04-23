@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md">
+    <h1>Events</h1>
+    <div class="inner-addon right-addon">
+      <i class="glyphicon glyphicon-search"></i>
+      <input type="text" id="searchArg" #searchArg [(ngModel)]="search" class="form-control" placeholder="Search">
+    </div>
+    <hr>
+    <ul class="list-group">
+      <cs-event-item *ngFor="let event of events | filter:searchArg.value; let i = index" [event]="event" [eventId]="i" class="col-md-6"></cs-event-item>
+    </ul>
+    <div class="row">
+      <div class="col-xs-12">
+        <a class="btn btn-success" [routerLink]="['new']">New Event</a>
+      </div>
+    </div>
