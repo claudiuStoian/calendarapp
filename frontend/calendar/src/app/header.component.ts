@@ -9,6 +9,7 @@ export class HeaderComponent {
 
   constructor(private eventService: EventService) { }
 
+  /*
   onStore() {
     this.eventService.storeData().subscribe(
       data => console.log(data),
@@ -19,5 +20,5 @@ export class HeaderComponent {
   onFetch() {
     this.eventService.fetchData();
   }
-
+  */
 }

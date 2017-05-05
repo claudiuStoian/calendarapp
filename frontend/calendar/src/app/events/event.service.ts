@@ -22,27 +22,58 @@ export class EventService {
   }
 
   deleteEvent(event: csEvent) {
+    const id: number = event.id;
     this.events.splice(this.events.indexOf(event), 1);
+    const headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+    console.log(event.name, event.id, id);
+    return this.http.delete('http://localhost:8000/api/events/' + id + '/', { headers: headers })
+      .map((data: Response) => data.json())
+      .subscribe(
+      data => { }
+      );
   }
 
   addEvent(event: csEvent) {
     this.events.push(event);
+    const body = JSON.stringify(event);
+    const headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+    return this.http.post('http://localhost:8000/api/events/', body, { headers: headers })
+      .map((data: Response) => data.json())
+      .subscribe(
+      data => { }
+      );
   }
 
   editEvent(oldEvent: csEvent, newEvent: csEvent) {
     this.events[this.events.indexOf(oldEvent)] = newEvent;
+    const id: number = newEvent.id;
+    const body = JSON.stringify(newEvent);
+    const headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+    console.log(newEvent.name, newEvent.id, id);
+    return this.http.put('http://localhost:8000/api/events/' + id + '/', body, { headers: headers })
+      .map((data: Response) => data.json())
+      .subscribe(
+      data => { }
+      );
   }
 
-  storeData() {
+  /*storeData() {
     const body = JSON.stringify(this.events);
     const headers = new Headers({
       'Content-Type': 'application/json'
     });
-    return this.http.put('https://calendar-17c14.firebaseio.com/events.json', body, { headers: headers });
-  }
+    return this.http.patch('http://localhost:8000/api/events/', body, { headers: headers })
+    //.map((data: Response) => data.json());
+  }*/
 
   fetchData() {
-    return this.http.get('https://calendar-17c14.firebaseio.com/events.json')
+    return this.http.get('http://localhost:8000/api/events/')
       .map((response: Response) => response.json())
       .subscribe(
       (data: csEvent[]) => {

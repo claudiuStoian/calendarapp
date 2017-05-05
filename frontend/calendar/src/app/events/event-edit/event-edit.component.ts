@@ -52,6 +52,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
     let eventDescription = '';
     let eventDate: Date = null;
     let eventLocation = '';
+    let eventId: number = null;
 
     if (!this.isNew) {
       eventName = this.event.name;
@@ -59,6 +60,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
       eventDescription = this.event.description;
       eventDate = this.event.date;
       eventLocation = this.event.location;
+      eventId = this.event.id;
     }
 
     this.eventForm = this.formBuilder.group({
@@ -66,7 +68,8 @@ export class EventEditComponent implements OnInit, OnDestroy {
       imagePath: [eventImageUrl, Validators.required],
       description: [eventDescription, Validators.required],
       date: [eventDate, Validators.required],
-      location: [eventLocation]
+      location: [eventLocation],
+      id: [eventId]
     });
   }
 

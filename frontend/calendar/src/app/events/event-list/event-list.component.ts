@@ -10,7 +10,6 @@ import { EventService } from "app/events/event.service";
 export class EventListComponent implements OnInit {
   events: csEvent[] = [];
   search: string;
-  temp: csEvent[] = [];
 
   constructor(private eventService: EventService) { }
 
