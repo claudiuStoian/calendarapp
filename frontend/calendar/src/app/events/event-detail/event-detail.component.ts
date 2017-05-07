@@ -3,6 +3,7 @@ import { csEvent } from "app/events/event";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs/Subscription";
 import { EventService } from "app/events/event.service";
+import { AuthenticationService } from "app/login/authentication.service";
 
 @Component({
   selector: 'cs-event-detail',
@@ -15,7 +16,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router,
     private route: ActivatedRoute,
-    private eventsService: EventService) { }
+    private eventsService: EventService,
+    private authService: AuthenticationService) { }
 
   ngOnInit() {
     this.subscription = this.route.params.subscribe(

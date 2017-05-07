@@ -2,6 +2,8 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import { csEvent } from "app/events/event";
 import 'rxjs/Rx';
+import { AuthenticationService } from "app/login/authentication.service";
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class EventService {
@@ -11,7 +13,7 @@ export class EventService {
 
   ];
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private authService: AuthenticationService) { }
 
   getEvents() {
     return this.events;
@@ -25,9 +27,9 @@ export class EventService {
     const id: number = event.id;
     this.events.splice(this.events.indexOf(event), 1);
     const headers = new Headers({
-      'Content-Type': 'application/json'
+      'Authorization': 'Bearer ' + this.authService.token
     });
-    console.log(event.name, event.id, id);
+    console.log(this.authService.token);
     return this.http.delete('http://localhost:8000/api/events/' + id + '/', { headers: headers })
       .map((data: Response) => data.json())
       .subscribe(
@@ -39,7 +41,9 @@ export class EventService {
     this.events.push(event);
     const body = JSON.stringify(event);
     const headers = new Headers({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ' + this.authService.token
     });
     return this.http.post('http://localhost:8000/api/events/', body, { headers: headers })
       .map((data: Response) => data.json())
@@ -53,7 +57,9 @@ export class EventService {
     const id: number = newEvent.id;
     const body = JSON.stringify(newEvent);
     const headers = new Headers({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ' + this.authService.token
     });
     console.log(newEvent.name, newEvent.id, id);
     return this.http.put('http://localhost:8000/api/events/' + id + '/', body, { headers: headers })

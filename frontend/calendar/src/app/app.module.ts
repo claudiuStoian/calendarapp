@@ -17,6 +17,9 @@ import { EventEditComponent } from './events/event-edit/event-edit.component';
 import { FilterPipe } from './events/filter.pipe';
 import { DateFormatPipe } from './events/date-format.pipe';
 import { MomentModule } from 'angular2-moment';
+import { LoginComponent } from './login/login.component';
+import { AuthenticationService } from "app/login/authentication.service";
+import { AuthGuard } from "app/events/auth.guard";
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import { MomentModule } from 'angular2-moment';
     EventStartComponent,
     EventEditComponent,
     FilterPipe,
-    DateFormatPipe
+    DateFormatPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,7 @@ import { MomentModule } from 'angular2-moment';
     appRouting,
     MomentModule
   ],
-  providers: [EventService, { provide: LOCALE_ID, useValue: "ro-RO" }],
+  providers: [EventService, AuthenticationService, AuthGuard, { provide: LOCALE_ID, useValue: "ro-RO" }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

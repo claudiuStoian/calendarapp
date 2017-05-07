@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'events',
     'corsheaders',
-    'rest_framework_bulk'
+    'rest_framework_bulk',
+    'rest_framework_jwt'
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL = '/events/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication'
+    ),
+}
+
+JWT_AUTH = {
+    'JWT_SECRET_KEY': SECRET_KEY,
+    'JWT_AUTH_HEADER': 'Authorization',
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer'
+}

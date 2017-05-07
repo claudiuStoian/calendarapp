@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Username</label>
+            <input type="text" id="username" class="form-control" formControlName="username">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Password</label>
+            <input type="password" id="password" class="form-control" formControlName="password">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-success" [disabled]="!loginForm.valid">Log In</button>
+          <a class="btn btn-danger" (click)="onCancel()">Cancel</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

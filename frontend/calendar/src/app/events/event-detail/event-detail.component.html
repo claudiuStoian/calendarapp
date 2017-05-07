@@ -12,8 +12,8 @@
     <p class="pager">{{selectedEvent?.date | date: 'short'}}</p>
   </div>
   <div class="col-xs-12">
-    <button class="btn btn-primary" (click)="onEdit()">Edit</button>
-    <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+    <button class="btn btn-primary" [disabled]="!this.authService.isAuth" (click)="onEdit()">Edit</button>
+    <button class="btn btn-danger" [disabled]="!this.authService.isAuth" (click)="onDelete()">Delete</button>
     <button class="btn btn-primary" (click)="onBack()">Back</button>
 
   </div>

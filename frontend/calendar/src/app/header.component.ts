@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EventService } from "app/events/event.service";
+import { AuthenticationService } from "app/login/authentication.service";
 
 @Component({
   selector: 'cs-header',
@@ -7,8 +7,11 @@ import { EventService } from "app/events/event.service";
 })
 export class HeaderComponent {
 
-  constructor(private eventService: EventService) { }
+  constructor(private authService: AuthenticationService) { }
 
+  onLogout() {
+    this.authService.logout();
+  }
   /*
   onStore() {
     this.eventService.storeData().subscribe(
