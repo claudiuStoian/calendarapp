@@ -144,3 +144,7 @@ JWT_AUTH = {
     'JWT_AUTH_HEADER': 'Authorization',
     'JWT_AUTH_HEADER_PREFIX': 'Bearer'
 }
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'

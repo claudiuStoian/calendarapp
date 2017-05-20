@@ -18,6 +18,8 @@ from django.contrib import admin
 from rest_framework.urlpatterns import format_suffix_patterns
 from rest_framework_jwt.views import obtain_jwt_token
 from events import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -26,4 +28,4 @@ urlpatterns = [
     url(r'^api/register/$', views.CreateUser.as_view()),
     url(r'^api/events/$', views.EventList.as_view()),
     url(r'^api/events/(?P<pk>[0-9]+)/$', views.EventDetail.as_view())
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
