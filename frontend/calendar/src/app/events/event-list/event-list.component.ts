@@ -1,6 +1,9 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { csEvent } from "app/events/event";
 import { EventService } from "app/events/event.service";
+import { AuthenticationService } from "app/login/authentication.service";
+import { Router } from "@angular/router";
+import * as moment from 'moment';
 
 @Component({
   selector: 'cs-event-list',
@@ -10,8 +13,10 @@ import { EventService } from "app/events/event.service";
 export class EventListComponent implements OnInit {
   events: csEvent[] = [];
   search: string;
+  defaultDate = moment().toString();
+  loc = '';
 
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventService, private authService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
     this.events = this.eventService.getEvents();
@@ -21,6 +26,10 @@ export class EventListComponent implements OnInit {
           return new Date(a.date).getTime() - new Date(b.date).getTime()
         })
     );
+  }
+
+  onNew() {
+    this.router.navigate(['/events/new']);
   }
 
 }

@@ -28,7 +28,6 @@ export class AuthenticationService {
           this.token = token;
           localStorage.setItem('id_token', token);
           this.isAuth = true;
-          console.log(localStorage.getItem('id_token'))
           return true;
         } else {
           return false;

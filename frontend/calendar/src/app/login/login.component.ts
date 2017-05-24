@@ -47,8 +47,9 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.router.navigate(['/events']);
         } else {
           this.error = 'Username or password is incorrect';
+          console.log(this.error);
         }
-      })
+      });
   }
 
   onCancel() {

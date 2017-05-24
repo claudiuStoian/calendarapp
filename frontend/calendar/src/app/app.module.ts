@@ -15,11 +15,14 @@ import { appRouting } from "app/app.routes";
 import { EventStartComponent } from './events/event-start.component';
 import { EventEditComponent } from './events/event-edit/event-edit.component';
 import { FilterPipe } from './events/filter.pipe';
-import { DateFormatPipe } from './events/date-format.pipe';
 import { MomentModule } from 'angular2-moment';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationService } from "app/login/authentication.service";
 import { AuthGuard } from "app/events/auth.guard";
+import { Ng2PaginationModule } from 'ng2-pagination';
+import { DateFilterPipe } from './events/event-list/date-filter.pipe';
+import { DateFormatPipe } from "app/events/event-list/date-format.pipe";
+import { LocationFilterPipe } from './events/event-list/location-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,9 @@ import { AuthGuard } from "app/events/auth.guard";
     EventEditComponent,
     FilterPipe,
     DateFormatPipe,
-    LoginComponent
+    LoginComponent,
+    DateFilterPipe,
+    LocationFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,8 @@ import { AuthGuard } from "app/events/auth.guard";
     ReactiveFormsModule,
     HttpModule,
     appRouting,
-    MomentModule
+    MomentModule,
+    Ng2PaginationModule
   ],
   providers: [EventService, AuthenticationService, AuthGuard, { provide: LOCALE_ID, useValue: "ro-RO" }],
   bootstrap: [AppComponent]

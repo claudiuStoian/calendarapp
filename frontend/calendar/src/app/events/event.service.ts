@@ -20,7 +20,9 @@ export class EventService {
   }
 
   getEvent(id: number) {
-    return this.events[id];
+    return this.events.find(
+      event => event.id == id
+    );
   }
 
   deleteEvent(event: csEvent) {

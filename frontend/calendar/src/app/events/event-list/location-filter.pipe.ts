@@ -1,10 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'filterName',
-  pure: false
+  name: 'locationFilter'
 })
-export class FilterPipe implements PipeTransform {
+export class LocationFilterPipe implements PipeTransform {
 
   transform(value: any, filter: any): any {
     if (value.length === 0 && filter !== '') {
@@ -12,7 +11,7 @@ export class FilterPipe implements PipeTransform {
     }
     let resultArray = [];
     for (let item of value) {
-      if (item.name.match('^.*' + filter + '.*$')) {
+      if (item.location.match('^.*' + filter + '.*$')) {
         resultArray.push(item);
       }
     }

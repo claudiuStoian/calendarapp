@@ -1,16 +1,44 @@
-<div class="row">
-  <div class="col-md">
-    <h1>Events</h1>
-    <div class="inner-addon right-addon">
-      <i class="glyphicon glyphicon-search"></i>
-      <input type="text" id="searchArg" #searchArg [(ngModel)]="search" class="form-control" placeholder="Search">
-    </div>
-    <hr>
-    <ul class="list-group">
-      <cs-event-item *ngFor="let event of events | filter:searchArg.value; let i = index" [event]="event" [eventId]="i" class="col-md-6"></cs-event-item>
-    </ul>
-    <div class="row">
-      <div class="col-xs-12">
-        <a class="btn btn-success" [routerLink]="['new']">New Event</a>
+<div class="container pager">
+  <div class="row">
+    <div class="col-md-2">
+      <div class="row">
+        <br> <br>
+        <div class="container">
+          <div class="col-md-2">
+            <h3>Filters</h3>
+            <label for="name">Date</label>
+            <input type="date" id="dateSearch" class="form-control" #dateSearch [(ngModel)]="defaultDate">
+            <br>
+            <label for="name">Location</label>
+            <input type="text" id="locationSearch" class="form-control" #locationSearch [(ngModel)]="loc">
+          </div>
+        </div>
       </div>
     </div>
+    <div class="col-md-8">
+      <h1>Events</h1>
+      <div class="inner-addon right-addon">
+        <i class="glyphicon glyphicon-search"></i>
+        <input type="text" id="searchArg" #searchArg [(ngModel)]="search" class="form-control" placeholder="Search">
+      </div>
+      <hr>
+      <ul class="list-group">
+        <cs-event-item *ngFor="let event of events | filterName:searchArg.value | dateFilter:defaultDate | locationFilter:loc | paginate: { itemsPerPage: 4, currentPage: p }; let i = index"
+          [event]="event" [eventId]="event.id" class="col-md-6"></cs-event-item>
+      </ul>
+      <cs-event-item *ngIf="events.length == 0">There is no event that matches your search.</cs-event-item>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <button class="btn btn-primary" *ngIf="this.authService.isAuth" (click)="onNew()">New Event</button>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-7">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+
+  </div>
