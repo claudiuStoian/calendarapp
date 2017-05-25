@@ -12,7 +12,7 @@ import numpy as np
 
 
 class EventList(generics.ListCreateAPIView):
-    queryset = Event.objects.all()
+    queryset = Event.objects.all().order_by('date')
     serializer_class = EventSerializer
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly

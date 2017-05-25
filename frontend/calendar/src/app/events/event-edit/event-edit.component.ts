@@ -43,7 +43,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
   }
 
   private navigateBack() {
-    this.router.navigate(['../']);
+    this.router.navigate(['/events']);
   }
 
   private initForm(isNew: boolean) {
