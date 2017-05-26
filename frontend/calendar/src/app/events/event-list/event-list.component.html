@@ -1,4 +1,4 @@
-<div class="container pager">
+<div class="container">
   <div class="row">
     <div class="col-md-2">
       <div class="row">
@@ -26,19 +26,21 @@
         <cs-event-item *ngFor="let event of events | filterName:searchArg.value | dateFilter:defaultDate | locationFilter:loc | paginate: { itemsPerPage: 4, currentPage: p }; let i = index"
           [event]="event" [eventId]="event.id" class="col-md-6"></cs-event-item>
       </ul>
-      <cs-event-item *ngIf="events.length == 0">There is no event that matches your search.</cs-event-item>
     </div>
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-xs-5"></div>
+      <div class="col-xs-1 pull-left">
         <button class="btn btn-primary" *ngIf="this.authService.isAuth" (click)="onNew()">New Event</button>
       </div>
+      <div class="col-xs-4"></div>
     </div>
     <br>
     <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-7">
+      <div class="col-xs-4"></div>
+      <div class="col-xs-4 pull-left">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
+      <div class="col-xs-4"></div>
     </div>
 
   </div>

@@ -7,7 +7,7 @@ import * as moment from 'moment';
 export class DateFormatPipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
-    return moment(value).format('DD/MM/YYYY HH:mm')
+    return moment(value).utcOffset('-0000').format('DD/MM/YYYY HH:mm')
   }
 
 }

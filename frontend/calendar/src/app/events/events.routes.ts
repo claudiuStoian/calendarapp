@@ -7,7 +7,7 @@ import { AuthGuard } from "app/events/auth.guard";
 
 export const EVENT_ROUTES: Routes = [
     { path: '', component: EventListComponent },
-    { path: 'new', component: EventEditComponent },
+    { path: 'new', component: EventEditComponent, canActivate: [AuthGuard] },
     { path: ':id', component: EventDetailComponent },
     { path: ':id/edit', component: EventEditComponent, canActivate: [AuthGuard] },
 ];
