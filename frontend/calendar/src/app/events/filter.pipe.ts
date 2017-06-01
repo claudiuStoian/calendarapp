@@ -12,7 +12,7 @@ export class FilterPipe implements PipeTransform {
     }
     let resultArray = [];
     for (let item of value) {
-      if (item.name.match('^.*' + filter + '.*$')) {
+      if (item.name.toLowerCase().match('^.*' + filter.toLowerCase() + '.*$')) {
         resultArray.push(item);
       }
     }

@@ -11,7 +11,7 @@ export class LocationFilterPipe implements PipeTransform {
     }
     let resultArray = [];
     for (let item of value) {
-      if (item.location.match('^.*' + filter + '.*$')) {
+      if (item.location.toLowerCase().match('^.*' + filter.toLowerCase() + '.*$')) {
         resultArray.push(item);
       }
     }
