@@ -8,6 +8,8 @@ class Event(models.Model):
     description = models.TextField()
     date = models.DateTimeField(auto_now=False, auto_now_add=False)
     imagePath = models.TextField()
+    faculty = models.CharField(max_length=255)
+    eventType = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name

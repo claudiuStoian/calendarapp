@@ -6,41 +6,59 @@
         <div class="container">
           <div class="col-md-2">
             <h3>Filters</h3>
-            <label for="name">Date</label>
+            <label for="date">Date</label>
             <input type="date" id="dateSearch" class="form-control" #dateSearch [(ngModel)]="defaultDate">
             <br>
-            <label for="name">Location</label>
+            <label for="location">Location</label>
             <input type="text" id="locationSearch" class="form-control" #locationSearch [(ngModel)]="loc">
+            <br>
+            <label for="faculty">Faculty</label>
+            <select name="faculty" class="form-control" [(ngModel)]="fac">
+              <option [value]=""></option>
+              <option *ngFor="let faculty of this.eventService.faculties" [value]="faculty">  
+              {{faculty}}
+              </option>
+            </select>
+            <br>
+            <label for="name">Event type</label>
+            <select name="eventType" class="form-control" [(ngModel)]="etype">
+              <option [value]=""></option>
+              <option *ngFor="let eventType of this.eventService.eventTypes" [value]="eventType">  
+              {{eventType}}
+              </option>
+            </select>
           </div>
         </div>
       </div>
     </div>
     <div class="col-md-8">
-      <h1>Events</h1>
-      <div class="inner-addon right-addon">
-        <i class="glyphicon glyphicon-search"></i>
-        <input type="text" id="searchArg" #searchArg [(ngModel)]="search" class="form-control" placeholder="Search">
+      <div class="row">
+        <h1>Events</h1>
+        <div class="inner-addon right-addon">
+          <i class="glyphicon glyphicon-search"></i>
+          <input type="text" id="searchArg" #searchArg [(ngModel)]="search" class="form-control" placeholder="Search">
+        </div>
+        <hr>
+        <ul class="list-group">
+          <cs-event-item *ngFor="let event of events | filterName:searchArg.value | dateFilter:defaultDate | locationFilter:loc | facultyFilter:fac | etypeFilter:etype | paginate: { itemsPerPage: 4, currentPage: p }; let i = index"
+            [event]="event" [eventId]="event.id" class="col-md-6"></cs-event-item>
+        </ul>
       </div>
-      <hr>
-      <ul class="list-group">
-        <cs-event-item *ngFor="let event of events | filterName:searchArg.value | dateFilter:defaultDate | locationFilter:loc | paginate: { itemsPerPage: 4, currentPage: p }; let i = index"
-          [event]="event" [eventId]="event.id" class="col-md-6"></cs-event-item>
-      </ul>
-    </div>
-    <div class="row">
-      <div class="col-xs-5"></div>
-      <div class="col-xs-1 pull-left">
-        <button class="btn btn-primary" *ngIf="this.authService.isAuth" (click)="onNew()">New Event</button>
+      <div class="row">
+        <div class="col-xs-5"></div>
+        <div class="col-xs-4 pull-left">
+          <button class="btn btn-primary" *ngIf="this.authService.isAuth" (click)="onNew()">New Event</button>
+        </div>
+        <div class="col-xs-4"></div>
       </div>
-      <div class="col-xs-4"></div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="col-xs-4"></div>
-      <div class="col-xs-4 pull-left">
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      <br>
+      <div class="row">
+        <div class="col-xs-4"></div>
+        <div class="col-xs-4 pull-left">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+        <div class="col-xs-4"></div>
       </div>
-      <div class="col-xs-4"></div>
     </div>
 
   </div>

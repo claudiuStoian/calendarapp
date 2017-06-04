@@ -8,10 +8,10 @@ import { Observable } from "rxjs/Observable";
 @Injectable()
 export class EventService {
   eventsChanged = new EventEmitter<csEvent[]>();
+  public faculties: string[] = ['Facultatea de Matematica si Informatica', 'Facultatea de Medicina'];
+  public eventTypes: string[] = ['Prezentare', 'Seminar stiintific', 'Curs'];
 
-  private events: csEvent[] = [
-
-  ];
+  private events: csEvent[] = [];
 
   constructor(private http: Http, private authService: AuthenticationService) { }
 
@@ -63,7 +63,6 @@ export class EventService {
       'Accept': 'application/json',
       'Authorization': 'Bearer ' + this.authService.token
     });
-    console.log(newEvent.name, newEvent.id, id);
     return this.http.put('http://localhost:8000/api/events/' + id + '/', body, { headers: headers })
       .map((data: Response) => data.json())
       .subscribe(

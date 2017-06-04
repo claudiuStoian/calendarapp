@@ -12,7 +12,7 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
-            <label for="name">Location</label>
+            <label for="location">Location</label>
             <input type="text" id="location" class="form-control" formControlName="location">
           </div>
         </div>
@@ -20,16 +20,40 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
-            <label for="name">Date</label>
-            <input type="datetime-local" id="name" class="form-control" formControlName="date">
+            <label for="date">Date</label>
+            <input type="datetime-local" id="date" class="form-control" formControlName="date">
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
-            <label for="content">Content</label>
-            <textarea type="text" id="content" rows="6" class="form-control" formControlName="description"></textarea>
+            <label for="faculty">Faculty</label>
+            <select name="faculty" class="form-control" formControlName="faculty" [(ngModel)]="faculty">
+              <option *ngFor="let faculty of this.eventsService.faculties" [value]="faculty">  
+              {{faculty}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Event type</label>
+            <select name="eventType" class="form-control" formControlName="eventType" [(ngModel)]="eventType">
+              <option *ngFor="let eventType of this.eventsService.eventTypes" [value]="eventType">  
+              {{eventType}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea type="text" id="description" rows="6" class="form-control" formControlName="description"></textarea>
           </div>
         </div>
       </div>

@@ -14,7 +14,9 @@ export class EventListComponent implements OnInit {
   events: csEvent[] = [];
   search: string;
   defaultDate = moment().toString();
-  loc = '';
+  loc: string = '';
+  fac: string = '';
+  etype: string = '';
 
   constructor(private eventService: EventService, private authService: AuthenticationService, private router: Router) { }
 

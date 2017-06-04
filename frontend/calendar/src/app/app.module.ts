@@ -23,6 +23,8 @@ import { Ng2PaginationModule } from 'ng2-pagination';
 import { DateFilterPipe } from './events/event-list/date-filter.pipe';
 import { DateFormatPipe } from "app/events/event-list/date-format.pipe";
 import { LocationFilterPipe } from './events/event-list/location-filter.pipe';
+import { FacultyFilterPipe } from './events/event-list/faculty-filter.pipe';
+import { EtypeFilterPipe } from './events/event-list/etype-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { LocationFilterPipe } from './events/event-list/location-filter.pipe';
     DateFormatPipe,
     LoginComponent,
     DateFilterPipe,
-    LocationFilterPipe
+    LocationFilterPipe,
+    FacultyFilterPipe,
+    EtypeFilterPipe
   ],
   imports: [
     BrowserModule,

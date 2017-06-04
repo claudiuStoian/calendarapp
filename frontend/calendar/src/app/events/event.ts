@@ -5,5 +5,8 @@ export class csEvent {
         public description: string,
         public imagePath: string,
         public date: Date,
-        public location: string) { }
+        public location: string,
+        public faculty: string,
+        public eventType: string
+    ) { }
 }
