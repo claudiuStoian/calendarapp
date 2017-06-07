@@ -25,6 +25,12 @@ import { DateFormatPipe } from "app/events/event-list/date-format.pipe";
 import { LocationFilterPipe } from './events/event-list/location-filter.pipe';
 import { FacultyFilterPipe } from './events/event-list/faculty-filter.pipe';
 import { EtypeFilterPipe } from './events/event-list/etype-filter.pipe';
+import { ContactComponent } from './contact/contact.component';
+import { ContactListComponent } from './contact/contact-list/contact-list.component';
+import { ContactItemComponent } from './contact/contact-list/contact-item.component';
+import { ContactCreateComponent } from './contact/contact-create/contact-create.component';
+import { ContactService } from "app/contact/contact.service";
+import { ContactDetailComponent } from './contact/contact-detail/contact-detail.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +49,12 @@ import { EtypeFilterPipe } from './events/event-list/etype-filter.pipe';
     DateFilterPipe,
     LocationFilterPipe,
     FacultyFilterPipe,
-    EtypeFilterPipe
+    EtypeFilterPipe,
+    ContactComponent,
+    ContactListComponent,
+    ContactItemComponent,
+    ContactCreateComponent,
+    ContactDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +65,7 @@ import { EtypeFilterPipe } from './events/event-list/etype-filter.pipe';
     MomentModule,
     Ng2PaginationModule
   ],
-  providers: [EventService, AuthenticationService, AuthGuard, { provide: LOCALE_ID, useValue: "ro-RO" }],
+  providers: [EventService, ContactService, AuthenticationService, AuthGuard, { provide: LOCALE_ID, useValue: "ro-RO" }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

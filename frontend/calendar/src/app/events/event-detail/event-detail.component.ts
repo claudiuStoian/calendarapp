@@ -37,8 +37,11 @@ export class EventDetailComponent implements OnInit, OnDestroy {
   }
 
   onDelete() {
-    this.eventsService.deleteEvent(this.selectedEvent);
-    this.router.navigate(['/events']);
+    if (confirm('Are you sure you want to delete this event ?')) {
+      this.eventsService.deleteEvent(this.selectedEvent);
+      this.router.navigate(['/events']);
+    }
+
   }
 
   onBack() {

@@ -6,7 +6,12 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="nav" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a [routerLink]="['/events']">Events</a></li>
+        <li routerLinkActive="active"><a [routerLink]="['/contact/new']">Contact</a></li>
+        <li routerLinkActive="active"><a *ngIf="this.authService.isAuth" [routerLink]="['/contact/requests']">Requests</a></li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown" csDropdown>
           <a class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-menu-hamburger"></i><span class="caret"></span></a>

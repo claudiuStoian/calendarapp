@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-xs-5">
+    <h1>{{selectedContact?.title}}</h1>
+    <p>{{selectedContact?.name}} </p>
+    <p>{{selectedContact?.email}}</p>
+    <p>{{selectedContact?.done}}</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-5">
+    <button class="btn btn-primary" (click)="this.navigateBack()">Back</button>
+    <button class="btn btn-primary" (click)="onDone()">Done</button>
+    <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-12 wrap">
+    <p>{{selectedContact?.message}}</p>
+  </div>
+</div>
+<br>

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'events',
+    'contact',
     'corsheaders',
     'rest_framework_bulk',
     'rest_framework_jwt'

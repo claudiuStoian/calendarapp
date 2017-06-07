@@ -17,7 +17,8 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework.urlpatterns import format_suffix_patterns
 from rest_framework_jwt.views import obtain_jwt_token
-from events import views
+from events import views as eviews
+from contact import views as cviews
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -25,7 +26,9 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include('rest_framework.urls')),
     url(r'^api/api-token-auth', obtain_jwt_token),
-    url(r'^api/register/$', views.CreateUser.as_view()),
-    url(r'^api/events/$', views.EventList.as_view()),
-    url(r'^api/events/(?P<pk>[0-9]+)/$', views.EventDetail.as_view())
+    url(r'^api/register/$', eviews.CreateUser.as_view()),
+    url(r'^api/events/$', eviews.EventList.as_view()),
+    url(r'^api/events/(?P<pk>[0-9]+)/$', eviews.EventDetail.as_view()),
+    url(r'^api/contact/$', cviews.ContactList.as_view()),
+    url(r'^api/contact/(?P<pk>[0-9]+)/$', cviews.ContactDetail.as_view())
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

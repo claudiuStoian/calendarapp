@@ -72,10 +72,10 @@ export class EventEditComponent implements OnInit, OnDestroy {
       imagePath: [eventImageUrl, Validators.required],
       description: [eventDescription, Validators.required],
       date: [eventDate, Validators.required],
-      location: [eventLocation],
+      location: [eventLocation, Validators.required],
       id: [eventId],
-      faculty: [eventFaculty],
-      eventType: [eventType]
+      faculty: [eventFaculty, Validators.required],
+      eventType: [eventType, Validators.required]
     });
   }
 

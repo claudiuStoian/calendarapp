@@ -31,7 +31,6 @@ export class EventService {
     const headers = new Headers({
       'Authorization': 'Bearer ' + this.authService.token
     });
-    console.log(this.authService.token);
     return this.http.delete('http://localhost:8000/api/events/' + id + '/', { headers: headers })
       .map((data: Response) => data.json())
       .subscribe(

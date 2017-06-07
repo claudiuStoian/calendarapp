@@ -1,0 +1,4 @@
+<ul class="list-group">
+  <cs-contact-item *ngFor="let contact of contacts | paginate: { itemsPerPage: 4, currentPage: p }; let i = index" [contact]="contact"
+    [contactId]="contact.id"></cs-contact-item>
+</ul>
