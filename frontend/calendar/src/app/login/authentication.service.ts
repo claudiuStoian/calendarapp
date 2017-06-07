@@ -10,8 +10,11 @@ export class AuthenticationService {
   public isAuth: boolean = false;
 
   constructor(private http: Http) {
-    var currentToken = localStorage.getItem('id_token');
-    this.token = currentToken;
+    if (localStorage.getItem('id_token')) {
+      var currentToken = localStorage.getItem('id_token');
+      this.token = currentToken;
+      this.isAuth = true;
+    }
   }
 
   login(username: string, password: string): Observable<boolean> {
