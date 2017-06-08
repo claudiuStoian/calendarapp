@@ -1,4 +1,15 @@
-<ul class="list-group">
-  <cs-contact-item *ngFor="let contact of contacts | paginate: { itemsPerPage: 4, currentPage: p }; let i = index" [contact]="contact"
-    [contactId]="contact.id"></cs-contact-item>
-</ul>
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <cs-contact-item *ngFor="let contact of contacts | paginate: { itemsPerPage: 4, currentPage: p }; let i = index" [contact]="contact"
+        [contactId]="contact.id"></cs-contact-item>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-4"></div>
+  <div class="col-xs-4 pull-left">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+  <div class="col-xs-4"></div>
+</div>

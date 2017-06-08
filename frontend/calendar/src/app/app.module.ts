@@ -31,6 +31,7 @@ import { ContactItemComponent } from './contact/contact-list/contact-item.compon
 import { ContactCreateComponent } from './contact/contact-create/contact-create.component';
 import { ContactService } from "app/contact/contact.service";
 import { ContactDetailComponent } from './contact/contact-detail/contact-detail.component';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,10 @@ import { ContactDetailComponent } from './contact/contact-detail/contact-detail.
     HttpModule,
     appRouting,
     MomentModule,
-    Ng2PaginationModule
+    Ng2PaginationModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDVAyfmcq7tRoELVB6aBs1YxitZ_bnjXZE'
+    })
   ],
   providers: [EventService, ContactService, AuthenticationService, AuthGuard, { provide: LOCALE_ID, useValue: "ro-RO" }],
   bootstrap: [AppComponent]

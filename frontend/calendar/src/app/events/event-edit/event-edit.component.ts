@@ -8,7 +8,11 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 @Component({
   selector: 'cs-event-edit',
   templateUrl: './event-edit.component.html',
-  styles: []
+  styles: [`
+    .sebm-google-map-container {
+      height: 300px;
+    }
+    `]
 })
 export class EventEditComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
@@ -16,6 +20,11 @@ export class EventEditComponent implements OnInit, OnDestroy {
   private event: csEvent;
   private isNew: boolean = true;
   eventForm: FormGroup;
+  zoom: number = 13;
+  defaultLat: number = 44.197218;
+  defaultLng: number = 28.631401;
+  private lat: number = null;
+  private lng: number = null;
 
   constructor(private route: ActivatedRoute,
     private eventsService: EventService,
@@ -43,7 +52,7 @@ export class EventEditComponent implements OnInit, OnDestroy {
   }
 
   private navigateBack() {
-    this.router.navigate(['/events']);
+    this.router.navigate(['../']);
   }
 
   private initForm(isNew: boolean) {
@@ -55,6 +64,8 @@ export class EventEditComponent implements OnInit, OnDestroy {
     let eventId: number = null;
     let eventFaculty: string = '';
     let eventType: string = '';
+    let eventLat: number = this.lat;
+    let eventLng: number = this.lng;
 
     if (!this.isNew) {
       eventName = this.event.name;
@@ -65,6 +76,10 @@ export class EventEditComponent implements OnInit, OnDestroy {
       eventId = this.event.id;
       eventFaculty = this.event.faculty;
       eventType = this.event.eventType;
+      eventLat = this.event.lat;
+      eventLng = this.event.lng;
+      this.lat = this.event.lat;
+      this.lng = this.event.lng;
     }
 
     this.eventForm = this.formBuilder.group({
@@ -75,7 +90,9 @@ export class EventEditComponent implements OnInit, OnDestroy {
       location: [eventLocation, Validators.required],
       id: [eventId],
       faculty: [eventFaculty, Validators.required],
-      eventType: [eventType, Validators.required]
+      eventType: [eventType, Validators.required],
+      lat: [eventLng, Validators.required],
+      lng: [eventLng, Validators.required]
     });
   }
 
@@ -86,11 +103,16 @@ export class EventEditComponent implements OnInit, OnDestroy {
     } else {
       this.eventsService.editEvent(this.event, newEvent);
     }
-    this.navigateBack();
+    this.eventsService.fetchData();
   }
 
   onCancel() {
     this.navigateBack();
+  }
+
+  mapClicked($event: any) {
+    this.lat = $event.coords.lat;
+    this.lng = $event.coords.lng;
   }
 
 }

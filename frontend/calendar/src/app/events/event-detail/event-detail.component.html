@@ -6,7 +6,7 @@
 </div>
 <hr>
 <div class="row">
-  <div class="col-xs-5">
+  <div class="col-xs-12">
     <h1>{{selectedEvent?.name}}</h1>
     <p>{{selectedEvent?.faculty}} </p>
     <p>{{selectedEvent?.location}}</p>
@@ -22,8 +22,22 @@
 </div>
 <hr>
 <div class="row">
-  <div class="col-md-12 wrap">
+  <div class="col-md-12">
     <p>{{selectedEvent?.description}}</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="map">
+      <sebm-google-map [latitude]="this.selectedEvent?.lat" [longitude]="this.selectedEvent?.lng" [zoom]="zoom">
+        <sebm-google-map-marker [latitude]="this.selectedEvent?.lat" [longitude]="this.selectedEvent?.lng">
+          <sebm-google-map-info-window>
+            <strong>{{selectedEvent?.name}}</strong>
+            <br> {{selectedEvent?.location}}
+          </sebm-google-map-info-window>
+        </sebm-google-map-marker>
+      </sebm-google-map>
+    </div>
   </div>
 </div>
 <br>

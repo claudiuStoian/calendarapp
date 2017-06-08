@@ -48,6 +48,7 @@ export class ContactCreateComponent implements OnInit {
   onSubmit() {
     const newContact = this.contactForm.value;
     this.contactService.addContact(newContact);
+    this.contactService.fetchContacts();
     this.navigateBack();
   }
 

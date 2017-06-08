@@ -32,9 +32,11 @@ export class ContactDetailComponent implements OnInit {
   }
 
   onDone() {
-    this.selectedContact.done = true;
-    this.contactService.editContact(this.selectedContact);
-    this.navigateBack();
+    if (confirm('Are you done with this request ?')) {
+      this.selectedContact.done = true;
+      this.contactService.editContact(this.selectedContact);
+      this.navigateBack();
+    }
   }
 
   private navigateBack() {

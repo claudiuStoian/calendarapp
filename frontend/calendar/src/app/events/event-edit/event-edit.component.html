@@ -72,6 +72,33 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="lat">Latitude</label>
+            <input type="text" id="lat" class="form-control" formControlName="lat" [(ngModel)]="lat">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="lng">Longitude</label>
+            <input type="text" id="lng" class="form-control" formControlName="lng" [(ngModel)]="lng">
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="map">
+            <sebm-google-map [latitude]="defaultLat" [longitude]="defaultLng" [zoom]="zoom" (mapClick)="mapClicked($event)">
+              <sebm-google-map-marker *ngIf="isNew" [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+              <sebm-google-map-marker *ngIf="!isNew" [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+            </sebm-google-map>
+          </div>
+        </div>
+      </div>
       <br>
       <div class="row">
         <div class="col-xs-12">

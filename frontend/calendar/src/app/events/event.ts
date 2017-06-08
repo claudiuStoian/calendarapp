@@ -7,6 +7,8 @@ export class csEvent {
         public date: Date,
         public location: string,
         public faculty: string,
-        public eventType: string
+        public eventType: string,
+        public lat: number,
+        public lng: number
     ) { }
 }

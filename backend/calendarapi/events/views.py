@@ -9,12 +9,32 @@ import urllib.request
 import numpy as np
 
 
-class EventList(generics.ListCreateAPIView):
+class EventList(APIView):
     queryset = Event.objects.all().order_by('date')
     serializer_class = EventSerializer
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
     ]
+
+    def get(self, request, format=None):
+        events = Event.objects.all().order_by('date')
+        serializer = EventSerializer(events, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        domain_name = 'http://localhost:8000/'
+        if domain_name not in request.data['imagePath']:
+            temp = np.random.randint(1000, 1000000)
+            extension = request.data['imagePath'].split(".")[-1]
+            full_filename = 'media/Images/' + str(temp) + "." + extension
+            urllib.request.urlretrieve(
+                request.data['imagePath'], full_filename)
+            request.data['imagePath'] = domain_name + full_filename
+        serializer = EventSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class EventDetail(APIView):

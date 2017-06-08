@@ -7,12 +7,19 @@ import { AuthenticationService } from "app/login/authentication.service";
 
 @Component({
   selector: 'cs-event-detail',
-  templateUrl: './event-detail.component.html'
+  templateUrl: './event-detail.component.html',
+  styles: [`
+  .sebm-google-map-container {
+      height: 300px;
+    }
+  `]
 })
 export class EventDetailComponent implements OnInit, OnDestroy {
   selectedEvent: csEvent;
   private eventIndex: number;
   private subscription: Subscription;
+  private zoom: number = 13;
+
 
   constructor(private router: Router,
     private route: ActivatedRoute,

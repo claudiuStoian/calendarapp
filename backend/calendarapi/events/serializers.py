@@ -7,7 +7,7 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = ('id', 'name', 'location', 'description',
-                  'date', 'imagePath', 'faculty', 'eventType')
+                  'date', 'imagePath', 'faculty', 'eventType', 'lat', 'lng')
 
 
 class UserSerializer(serializers.ModelSerializer):
